@@ -5,7 +5,8 @@
 # 不要一下就拉取别人一个插件包N多插件的，多了没用，增加编译错误，自己需要的才好
 
 # 添加其他feeds软件源
-echo 'src-git small https://github.com/kenzok8/small-package.git' >>feeds.conf.default
+# echo 'src-git small https://github.com/kenzok8/small-package.git' >>feeds.conf.default
+echo 'src-git kiddin9 https://github.com/kiddin9/openwrt-packages.git' >>feeds.conf.default
 
 
 # 后台IP设置
