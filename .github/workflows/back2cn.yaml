@@ -27,10 +27,10 @@ dns:
 proxies:
   - name: "中国SOCKS代理"
     type: socks5
-    server: zo.com
+    server: zowrt.com
     port: 5678
-    username: "aaa"
-    password: "aaa"
+    username: "US"
+    password: "itEdUXAupAXG2yn"
     udp: true
 
 proxy-groups:
