@@ -15,9 +15,10 @@ dns:
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
+    - https://223.6.6.6/dns-query
   fallback:
-    - 8.8.8.8
-    - 1.1.1.1
+    - tls://8.8.8.8
+    - tls://1.1.1.1
   fallback-filter:
     geoip: true
     ipcidr:
@@ -28,34 +29,31 @@ proxies:
     type: socks5
     server: zo.com
     port: 5678
-    username: "aaa"  # 有账号密码就填写，没有留空
+    username: "aaa"
     password: "aaa"
     udp: true
 
 proxy-groups:
-  - name: "回国"
+  - name: 回国
     type: select
     proxies:
       - 中国SOCKS代理
-      - DIRECT
 
 rule-providers:
   china-ip:
     type: http
     behavior: ipcidr
-    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt"
     path: ./ruleset/china-ip.yaml
     interval: 86400
 
-  china-domains:
-    type: http
-    behavior: domain
-    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/domains/china.yaml
-    path: ./ruleset/china-domains.yaml
-    interval: 86400
-
 rules:
-  - RULE-SET,china-domains,回国
+  - DOMAIN-SUFFIX,qq.com,回国
+  - DOMAIN-SUFFIX,bilibili.com,回国
+  - DOMAIN-SUFFIX,iqiyi.com,回国
+  - DOMAIN-SUFFIX,youku.com,回国
+  - DOMAIN-SUFFIX,taobao.com,回国
+  - DOMAIN-SUFFIX,baidu.com,回国
   - RULE-SET,china-ip,回国
   - GEOIP,CN,回国
   - MATCH,DIRECT
